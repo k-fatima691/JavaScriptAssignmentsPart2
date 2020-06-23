@@ -1,5 +1,5 @@
 //chapter 21-25
-//string methods
+//String Methods
 //question 1
 var firstName = prompt("First Name:","Enter your first name")
 var lastName = prompt("Last Name:","Enter your last name")
@@ -83,11 +83,12 @@ if (check == true){
     userName
 }
 //question 14
-var bakeryItems = ["cake", "apple pie", "cookie", "chips", "patties"]
+var A = ["cake", "apple pie", "cookie", "chips", "patties"]
 var askUser = prompt("Welcome to ABC Bakery.What do you want to order sir/ma'am?")
+askUser = askUser.toLocaleLowerCase()
 var isFound = false
-for (i = 0; i < bakeryItems.length; i++) {
-    if (askUser === bakeryItems[i]) {
+for (i = 0; i < A.length; i++) {
+    if (askUser === A[i]) {
         alert(askUser + " is available at index " + i + " in our bakery")
         isFound = true
         break
@@ -97,6 +98,23 @@ if (isFound === false) {
     alert("We are sorry. " + askUser + " is not available in our bakery")
 }
 //question 15
+var askUser = prompt("Password:","Enter your password");
+var flag = 0
+var count = 0
+var check = +askUser.slice(0,1)
+if (check.toString()!= "NaN"){
+    flag++
+}else{
+    for (i = 0 ;i < askUser.length;i++){
+        var checker = +askUser.slice(i,i+1)
+        if (checker.toString() == "NaN"){
+            count++
+        }
+    }
+}
+if (flag == 1 ||count == askUser.length){
+    alert("Please enter a valid password")
+}
 //question 16
 var university = "University of Karachi"
 var uniSplit = university.split("")
@@ -110,8 +128,19 @@ var lastChar = askUser.charAt(askUser.length - 1)
 document.write("User input: " + askUser + "<br>")
 document.write("Last character of input: " + lastChar)
 //question 18
-var text = "The quick brown fox jumps over the lazy dog";
+var string = "The quick brown fox jumps over the lazy dog"
+var count = 0
+var word = "the"
+var wordCheck = string.toLocaleLowerCase()
+for (i = 0;i < wordCheck.length;i++){
+    checker = wordCheck.slice(i,(word.length) + i)
 
+    if (word == checker){
+        count++
+    }
+}
+console.log("Text: " + string)
+console.log("There are " + count + " occurrence(s) of word 'the'")
 
 
 
@@ -181,24 +210,24 @@ else{
 //Chapter 31-34
 //Date Methods
 //question 1
-var todayDate = new Date();
-document.write(todayDate)
+var today = new Date();
+document.write(today)
 //question 2
 var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-var todayDate = new Date();
-var monthNow = todayDate.getMonth();
+var today = new Date();
+var monthNow = today.getMonth();
 var currentMonth = monthNames[monthNow];
 alert("Current Month: " + currentMonth)
 //question 3
 var dayNames = ["Sun","Mon","Tue","Wed","Thurs","Fri","Sat"]
-var todayDate = new Date();
-var dayNow = todayDate.getDay();
+var today = new Date();
+var dayNow = today.getDay();
 var currentDay = dayNames[dayNow];
 alert("Today is " + currentDay)
 //question 4
 var dayNames = ["Sun","Mon","Tue","Wed","Thurs","Fri","Sat"]
-var todayDate = new Date();
-var dayNow = todayDate.getDay();
+var today = new Date();
+var dayNow = today.getDay();
 if (dayNow === 0 || dayNow === 6){
     alert("It's Fun day")
 }
@@ -212,18 +241,18 @@ else{
     alert("Last days of the month")
 }
 //question 6
-var todayDate = new Date();
-var todayMilli = todayDate.getTime()
+var today = new Date();
+var todayMilli = today.getTime()
 var oldDate = new Date("Jan 1,1970")
 var oldMilli = oldDate.getTime()
 var diffMilli = todayMilli - oldMilli
 var minsElapse = Math.floor(diffMilli/(1000*60))
-document.write("Current Date: " + todayDate + "<br>")
+document.write("Current Date: " + today + "<br>")
 document.write("Elapsed milliseconds since January 1,1970: " + diffMilli + "<br>" )
 document.write("Elapsed minutes since January 1,1970: " + minsElapse)
 //question 7
-var todayDate = new Date();
-var currentHour = todayDate.getHours();
+var today = new Date();
+var currentHour = today.getHours();
 if (currentHour <= 12){
     alert("It's AM")
 }
@@ -235,8 +264,8 @@ var laterDate = new Date("Dec 31,2020");
 document.write("Later Date: " + laterDate)
 //question 9
 var ramzanDate = new Date("June 18,2015");
-var todayDate = new Date();
-var todayMilli = todayDate.getTime()
+var today = new Date();
+var todayMilli = today.getTime()
 var ramzanMilli = ramzanDate.getTime()
 var diffMilli = todayMilli - ramzanMilli
 var daysElapse = Math.floor(diffMilli/(1000*60*60*24))
@@ -247,11 +276,57 @@ var refMilli = refDate.getTime()
 var startDate = new Date("Jan 01,2015");
 var startMilli = startDate.getTime()
 var diffMilli = refMilli - startMilli
-var secsElapse = Math.floor(diffMilli/(1000))
+var secsElapse = Math.floor(diffMilli/(1000*60))
 document.write("On reference date " + refDate + "," + secsElapse + " seconds had passed since beginning of 2015")
 //question 11
+var today = new Date();
+var oneHourBehind = new Date();
+var changeHour = oneHourBehind.setHours(oneHourBehind.getHours() - 1);
+var oldHour = new Date(changeHour)
+document.write("Current Date: " + today + "<br>")
+document.write("1 hour ago, it was " + oldHour)
 //question 12
+var today = new Date();
+var oneCenturyBehind = new Date();
+var changeYear = oneCenturyBehind.setYear(oneCenturyBehind.getFullYear() - 100);
+var oldYear = new Date(changeYear)
+alert("Current Date: " + today + "\n100 years back, it was " + oldYear)
 //question 13
+var today = new Date();
+var askUser = +prompt("Age:","Enter your age in number")
+var dobAge = new Date(askUser);
+var currentYear = today.getFullYear();
+var dobYear = dobAge.setYear(currentYear - askUser)
+var dobDate = new Date(dobYear)
+var onlyDobYear = dobDate.getUTCFullYear();
+document.write("Your age is " + askUser + "<br>")
+document.write("Your birthyear is " + onlyDobYear)
+//question 14
+document.write("<h1>K-Electric Bill</h1>" + "<br>")
+//a
+var askUser = prompt("Customer Name:","Enter your name")
+document.write("Customer Name: " + askUser + " Customer" + "<br>")
+//b
+var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+var today = new Date();
+var monthNow = today.getMonth();
+var currentMonth = monthNames[monthNow];
+document.write("Month: " + currentMonth + "<br>")
+//c
+var unitInNumbers = prompt("Number of units:","Enter your number of units")
+document.write("Number of Units: " + unitInNumbers + "<br>")
+//d
+var chargePerUnit = prompt("Charge per Unit:","Enter your charges per unit")
+document.write("Charges per Unit: " + chargePerUnit + "<br>" + "<br>")
+//e
+var netAmount= unitInNumbers * chargePerUnit
+document.write("Net Amount Payable (within Due Date): " + netAmount + "<br>")
+//f
+var dueDateCharge = 350
+document.write("Late Payment Surcharge: " + dueDateCharge + "<br>")
+//g
+var grossAmount = netAmount + dueDateCharge
+document.write("Gross Amount Payable (after Due Date): " + grossAmount + "<br>")
 //Chapter 35-38
 //Function
 //question 1
@@ -329,7 +404,7 @@ function calculateHypotnuse(base,perpendicular){
         return num * num
     }
     var hypotnuse = calculateSquare(base) + calculateSquare(perpendicular)
-    return hypotnuse
+    return Math.sqrt(hypotnuse)
 }
 calculateHypotnuse()
 //question 9
@@ -346,19 +421,13 @@ function rectangleArea(){
 }
 rectangleArea(width,height)
 //question 10
-function isPalindrome(text){
-    var reverseText = text.split(").reverse().join(")
-
-
-    if (reverseText === text) {
-        return alert("text " + "is palindrome")
-
-    }
-    else if (reverseText != text){
-        return alert("text " + "is not palindrome")
-    }
+function checkPalindrome(string){
+    var reg = /[\W _]/g;
+    var lowRegString = string.toLowerCase().replace(reg,'');
+    var reverseString = lowRegString.split('').reverse().join('')
+    return reverseString === lowRegString;
 }
-isPalindrome("madam")
+checkPalindrome("madam")
 //question 11
 var exampleStr = "the quick brown fox"
 function upperCase(string){
@@ -386,9 +455,16 @@ function long_word(string){
 console.log("Example String: 'Web Development Tutorial'")
 console.log("Output is: "+  long_word("Web Development Tutorial"));
 //question 13
-
-
-
+function letterCount(string,letter){
+    var count = 0;
+    for(var i = 0; i < string.length ;i++ ){
+        if (string.charAt(i) == letter){
+            count += 1;
+        }
+    }
+    return count;
+}
+console.log(letterCount('JSResourceS.com','o'))
 //question 14
 function calcCircumference(radius){
     var calc = 2 * Math.PI * radius
